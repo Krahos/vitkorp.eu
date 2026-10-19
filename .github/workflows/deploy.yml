@@ -16,7 +16,7 @@ jobs:
       REMOTE_DIR: www
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: build
         uses: shalzz/zola-deploy-action@v0.23.6
         env:
