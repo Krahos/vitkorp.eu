@@ -3,16 +3,42 @@ on:
   push:
     branches:
       - main
-name: Build and deploy GH Pages
+name: Build and deploy to OVHcloud
+permissions:
+  contents: read
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    env:
+      SFTP_HOST: ftp.cluster129.hosting.ovh.net
+      SFTP_USER: vitkorp
+      REMOTE_DIR: www
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: build_and_deploy
-        uses: shalzz/zola-deploy-action@v0.17.2
+      - name: build
+        uses: shalzz/zola-deploy-action@v0.23.6
         env:
-          PAGES_BRANCH: gh-pages
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUILD_ONLY: true
+      - name: check build output
+        run: test -s public/index.html
+      - name: install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: upload
+        env:
+          SFTP_PASSWORD: ${{ secrets.OVH_SFTP_PASSWORD }}
+        run: |
+          # lftp parses the password as part of its command string: keep it to plain characters.
+          if ! [[ "$SFTP_PASSWORD" =~ ^[A-Za-z0-9._-]+$ ]]; then
+            echo "::error::OVH_SFTP_PASSWORD must only contain letters, digits, dot, underscore or dash"
+            exit 1
+          fi
+          lftp -c "
+            set sftp:connect-program 'ssh -a -x -o UserKnownHostsFile=$PWD/.github/ovh_known_hosts -o StrictHostKeyChecking=yes';
+            set net:max-retries 3;
+            set net:reconnect-interval-base 5;
+            open -u $SFTP_USER,$SFTP_PASSWORD sftp://$SFTP_HOST;
+            mirror --reverse --delete --verbose public $REMOTE_DIR;
+            bye
+          "

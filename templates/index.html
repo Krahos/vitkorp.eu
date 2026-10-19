@@ -1,7 +1,21 @@
 {% extends "base.html" %}
 
 {% block main %}
-  <main>
-    {{ section.content | safe }}
+  <main class="container">
+    <div class="prose">
+      {{ section.content | safe }}
+    </div>
+    <h2 id="projects">Projects</h2>
+    <div class="cards cards-wide">
+      {%- for path in section.subsections %}
+      {%- set s = get_section(path=path) %}
+      {%- if s.extra.project %}
+      <article class="card">
+        <h2><a href="{{ s.permalink }}">{{ s.title }}</a></h2>
+        <p>{{ s.description }}</p>
+      </article>
+      {%- endif %}
+      {%- endfor %}
+    </div>
   </main>
 {% endblock %}

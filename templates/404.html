@@ -3,6 +3,8 @@
 {% block title %}404{% endblock %}
 
 {% block main %}
-  <h1>404</h1>
-  <h2>ʕノ•ᴥ•ʔノ ︵ ┻━┻</h2>
+  <main class="container prose">
+    <h1>Page not found</h1>
+    <p>The page you are looking for doesn't exist. <a href="{{ get_url(path="@/_index.md") }}">Back to the homepage</a>.</p>
+  </main>
 {% endblock %}

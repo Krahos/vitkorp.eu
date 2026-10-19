@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} | {{ super() }}{% endblock %}
+
+{% block main %}
+  <main class="container">
+    <div class="prose">
+      <h1>{{ section.title }}</h1>
+      {{ section.content | safe }}
+      {%- if section.extra.badges %}
+      <p class="badges">
+        {%- for b in section.extra.badges %}
+        <a href="{{ b.url }}" rel="noopener"><img src="{{ get_url(path=b.image) }}" alt="{{ b.alt }}" height="50"></a>
+        {%- endfor %}
+      </p>
+      {%- endif %}
+    </div>
+  </main>
+{% endblock %}

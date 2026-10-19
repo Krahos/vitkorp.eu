@@ -1,5 +1,9 @@
-<footer>
-  {%- if not config.extra.hide_made_with_line %}
-    {{ trans(key="made_with", lang=lang) }} <a href="https://codeberg.org/alanpearce/zola-bearblog">Zola ʕ•ᴥ•ʔ Bear</a>
-  {%- endif %}
+<footer class="site-footer">
+  <div class="container footer-meta">
+    <span>{{ config.extra.legal_name }} · VAT number: {{ config.extra.vat_number }}</span>
+    <a href="{{ get_url(path="@/legal.md") }}">Legal &amp; privacy</a>
+    {%- if config.extra.source_url %}
+    <a href="{{ config.extra.source_url }}" rel="noopener">Website source</a>
+    {%- endif %}
+  </div>
 </footer>

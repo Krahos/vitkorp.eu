@@ -1,14 +1,15 @@
   body {
     font-family: Verdana, sans-serif;
-    margin: auto;
-    padding: 20px;
-    max-width: 720px;
-    text-align: justify;
-    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #333;
     word-wrap: break-word;
     overflow-wrap: break-word;
     line-height: 1.5;
-    color: #444;
+    color: #ddd;
   }
 
   h1,
@@ -19,54 +20,23 @@
   h6,
   strong,
   b {
-    color: #222;
+    color: #eee;
   }
 
   a {
-    color: #3273dc;
-  }
-
-  .title {
-    text-decoration: none;
-    border: 0;
-  }
-
-  .title h1 {
-  font-size: 1.5em;
-  }
-
-  .title span {
-    font-weight: 400;
+    color: #8cc2dd;
   }
 
   .filter {
     margin-bottom: 0;
   }
 
-  nav a {
-    margin-right: 10px;
-  }
-
-  nav active {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-
-  textarea {
-    width: 100%;
-    font-size: 1rem;
-  }
-
-  input {
-    font-size: 1rem;
-  }
-
   main,article {
     line-height: 1.6;
   }
 
-  table {
-    width: 100%;
+  main {
+    flex: 1;
   }
 
   img {
@@ -75,11 +45,11 @@
 
   code {
     padding: 2px 5px;
-    background-color: #f2f2f2;
+    background-color: #444;
   }
 
   pre code {
-    color: #222;
+    color: #ddd;
     display: block;
     padding: 20px;
     white-space: pre-wrap;
@@ -87,36 +57,116 @@
     overflow-x: auto;
   }
 
-  div.highlight pre {
-    background-color: initial;
-    color: initial;
-  }
-
-  div.highlight code {
-    background-color: unset;
-    color: unset;
-  }
-
   blockquote {
     border-left: 1px solid #999;
-    color: #222;
+    color: #ccc;
     padding-left: 20px;
     font-style: italic;
   }
 
-  footer {
-    padding: 25px;
-    text-align: center;
+  /* layout */
+  .container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
-  .helptext {
-    color: #777;
-    font-size: small;
+  .prose {
+    padding-top: 10px;
+    padding-bottom: 30px;
   }
 
-  .errorlist {
-    color: #eba613;
-    font-size: small;
+  .prose > * {
+    max-width: 720px;
+  }
+
+  .site-header {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.35);
+    margin-bottom: 30px;
+  }
+
+  .header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .brand {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-name {
+    font-weight: bold;
+    font-size: 1.15em;
+    color: #eee;
+  }
+
+  .brand-role {
+    font-size: 0.85em;
+  }
+
+  .main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 20px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .cards-wide {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .card {
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    border-radius: 6px;
+    padding: 5px 20px 15px;
+  }
+
+  .meta {
+    font-size: 0.9em;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 15px;
+  }
+
+  .badges img {
+    display: block;
+    height: 50px;
+    width: auto;
+  }
+
+  .tags a {
+    margin-right: 10px;
+  }
+
+  .site-footer {
+    border-top: 1px solid rgba(128, 128, 128, 0.35);
+    margin-top: 40px;
+    padding: 25px 0;
+    font-size: 0.9em;
+  }
+
+  .footer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5px 20px;
   }
 
   /* blog posts */
@@ -129,54 +179,12 @@
     display: flex;
   }
 
-  ul.blog-posts li span {
+  ul.blog-posts li time {
     flex: 0 0 130px;
+    font-style: italic;
   }
 
   ul.blog-posts li a:visited {
     color: #8b6fcb;
   }
 
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: #333;
-      color: #ddd;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    strong,
-    b {
-      color: #eee;
-    }
-
-    a {
-      color: #8cc2dd;
-    }
-
-    code {
-      background-color: #777;
-    }
-
-    pre code {
-      color: #ddd;
-    }
-
-    blockquote {
-      color: #ccc;
-    }
-
-    textarea,
-    input {
-      background-color: #252525;
-      color: #ddd;
-    }
-
-    .helptext {
-      color: #aaa;
-    }
-  }

@@ -1,29 +1,21 @@
 {% extends "base.html" %}
 
 {% block main %}
-  <main>
+  <main class="container prose">
     {%- if term %}
-      <h3 class="filter">Filtering for "{{ term.name }}"</h3>
-      <small>
-        <a href="{{ get_url(path="@/blog/_index.md", lang=lang) }}">{{ trans(key="remove_filter", lang=lang) }}</a>
-      </small>
+      <h1 class="filter">Filtering for "{{ term.name }}"</h1>
+      <p><a href="{{ get_url(path="@/blog/_index.md") }}">{{ trans(key="remove_filter") }}</a></p>
     {%- endif %}
     <ul class="blog-posts">
       {% for page in term.pages %}
         <li>
-          <span>
-            <i>
-              <time datetime='{{ page.date | date(format='%+') }}' pubdate>
-                {{ page.date | date(format=config.extra.date_format) }}
-              </time>
-            </i>
-          </span>
+          <time datetime='{{ page.date }}' pubdate>
+            {{ page.date | date(format=config.extra.date_format) }}
+          </time>
           <a href="{{ page.permalink }}">{{ page.title }}</a>
         </li>
       {% else %}
-        <li>
-          {{ trans(key="no_posts", lang=lang) }}
-        </li>
+        <li>{{ trans(key="no_posts") }}</li>
       {% endfor %}
     </ul>
   </main>

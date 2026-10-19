@@ -1,5 +1,5 @@
 {
-  description = "This flake manages dependencies to build my personal blog";
+  description = "This flake manages dependencies to build the VitKorp website";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";

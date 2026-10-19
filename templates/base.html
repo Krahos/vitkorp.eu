@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="{{ lang | default(value="en-US" ) }}">
+<html lang="en">
 <head>
-  {%- if config.webserver_sends_csp_headers %}
-  {%- include "security_tags.html" ignore missing %}
+  {%- if not config.extra.webserver_sends_csp_headers %}
+  {%- include "security_tags.html" %}
   {%- endif %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% include "favicon.html" ignore missing -%}
   <title>{%- block title %}{{ config.title }}{%- endblock %}</title>
-  {% include "seo_tags.html" ignore missing %}
+  {% include "seo_tags.html" %}
   <meta name="referrer" content="no-referrer-when-downgrade">
   {%- if config.generate_feed %}
   {% block rss -%}
@@ -16,14 +15,12 @@
   {%- endblock -%}
   {%- endif %}
   <style>
-  {%- include "style.css.html" ignore missing -%}
+  {%- include "style.css.html" -%}
   </style>
-  {% include "custom_head.html" ignore missing -%}
 </head>
 <body>
-  {% include "header.html" ignore missing -%}
+  {% include "header.html" -%}
   {% block main %}{%- endblock -%}
-  {% include "footer.html" ignore missing -%}
-  {% include "custom_body.html" ignore missing -%}
+  {% include "footer.html" -%}
 </body>
 </html>

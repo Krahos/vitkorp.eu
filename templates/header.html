@@ -1,9 +1,11 @@
-<header>
-  {% include "language_switcher.html" %}
-  <a href="{{ get_url(path="@/_index.md", lang=lang) }}" class="title">
-    <h1>{{ config.title }}</h1>
-  </a>
-  <nav>
-    {% include "nav.html" %}
-  </nav>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="{{ get_url(path="@/_index.md") }}" class="brand">
+      <span class="brand-name">{{ config.extra.brand_name }}</span>
+      <span class="brand-role">{{ config.extra.brand_role }}</span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      {% include "nav.html" %}
+    </nav>
+  </div>
 </header>
