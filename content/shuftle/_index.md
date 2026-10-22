@@ -23,4 +23,14 @@ Multiplayer will be coming later.
 It is built on [shuftlib](https://github.com/Shuftle/shuftlib), a Rust crate
 for turn-based games that I also maintain.
 
+## Android closed beta
+
+Shuftle is in closed testing on Google Play. To join:
+
+1. [Join the Google Group](https://groups.google.com/g/shuftle-testers)
+   with the Google account you use on Play Store.
+2. [Become a tester](https://play.google.com/apps/testing/eu.vitkorp.shuftle).
+3. [Install Shuftle](https://play.google.com/store/apps/details?id=eu.vitkorp.shuftle)
+   from Google Play.
+
 [Privacy policy](@/shuftle/privacy.md)
